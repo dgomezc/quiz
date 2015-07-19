@@ -8,6 +8,7 @@ var partials = require('express-partials');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var routes = require('./routes/index');
+var MAX_SESSION_TIME = 120000; // 2min
 var app = express();
 
 // view engine setup
@@ -38,6 +39,23 @@ app.use(function(req, res, next)
   res.locals.session = req.session;
   next();
 });
+
+// MW auto-logout
+app.use(function (req, res, next) {
+    if (req.session.user) {
+        var now = new Date().getTime();
+        var lastActionTime = parseInt(req.session.lastActionTime);
+        if (lastActionTime !== undefined && now - lastActionTime > MAX_SESSION_TIME) {
+          delete req.session.lastActionTime;
+          res.redirect('/logout');
+        }
+        else {
+          req.session.lastActionTime = now;
+        }
+    }
+    next();
+});
+
 
 app.use('/', routes);
 

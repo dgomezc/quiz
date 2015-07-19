@@ -27,6 +27,22 @@ app.use(methodOverride('_method'));
 app.use(session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//tiempo de sesion
+ app.use(function(req, res, next) {
+   if(req.session.user){// si estamos en una sesion
+        if(!req.session.marcatiempo){//primera vez se pone la marca de tiempo
+            req.session.marcatiempo=(new Date()).getTime();
+      }else{
+          if((new Date()).getTime()-req.session.marcatiempo > MAX_SESSION_TIME){//se pasó el tiempo y eliminamos la sesión
+              delete req.session.user;     //eliminamos el usuario
+          }else{//hay actividad se pone nueva marca de tiempo
+              req.session.marcatiempo=(new Date()).getTime();
+          }
+      }
+  }
+  next();
+});
+
 //Helpers dinamicos:
 app.use(function(req, res, next)
 {
@@ -39,23 +55,6 @@ app.use(function(req, res, next)
   res.locals.session = req.session;
   next();
 });
-
-// MW auto-logout
-app.use(function (req, res, next) {
-    if (req.session.user) {
-        var now = new Date().getTime();
-        var lastActionTime = parseInt(req.session.lastActionTime);
-        if (lastActionTime !== undefined && now - lastActionTime > MAX_SESSION_TIME) {
-          delete req.session.lastActionTime;
-          res.redirect('/logout');
-        }
-        else {
-          req.session.lastActionTime = now;
-        }
-    }
-    next();
-});
-
 
 app.use('/', routes);
 

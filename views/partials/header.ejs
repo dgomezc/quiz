@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+
+<!-- El logotipo y el icono que despliega el menú se agrupan
+     para mostrarlos mejor en los dispositivos móviles -->
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse"
+          data-target=".navbar-ex1-collapse">
+    <span class="sr-only">Desplegar navegación</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand" href="/">QUIZ</a>
+</div>
+
+<!-- Agrupar los enlaces de navegación, los formularios y cualquier
+     otro elemento que se pueda ocultar al minimizar la barra -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+  <ul class="nav navbar-nav">
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/quizes">Preguntas</a></li>
+    <li><a href="/author">Créditos</a></li>
+  </ul>
+
+  <p class="navbar-text pull-right">
+    <%if(!session.user){%>
+        <a href="/login" class="navbar-link">Login</a>
+    <%}else{%>
+      <%=session.user.username %> <a href="/logout" class="navbar-link">Logout</a>
+    <%}%>
+  </p>
+</div>
+</div>
+</nav>

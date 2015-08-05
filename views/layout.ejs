@@ -1,101 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Preguntas </title>
+  <head>
+    <% include /partials/head %>
+  </head>
 
-<!-- Bootstrap core CSS -->
-      <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <body class="container">
+    <header>
+      <% include /partials/header %>
+    </header>
 
-            <link rel="stylesheet" href="/bootstrap/css/bootstrap-superhero.min.css">
-      <!-- estilos personalizados -->
-            <link rel="stylesheet" href="/stylesheets/style.css">
-
-
-</head>
-
-<body>
-<div class="container">
-
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-
-  <!-- El logotipo y el icono que despliega el menú se agrupan
-       para mostrarlos mejor en los dispositivos móviles -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse"
-            data-target=".navbar-ex1-collapse">
-      <span class="sr-only">Desplegar navegación</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="/">QUIZ</a>
-  </div>
-
-  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-       otro elemento que se pueda ocultar al minimizar la barra -->
-  <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav">
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/quizes">Preguntas</a></li>
-      <li><a href="/author">Créditos</a></li>
-    </ul>
-
-
-      <%if(!session.user){%>
-        <p class="navbar-text pull-right"><a href="/login" class="navbar-link">Login</a></p>
-      <%}else{%>
-        <p class="navbar-text pull-right">
-  <%=session.user.username %> <a href="/logout" class="navbar-link">Logout</a>
-</p>
-      <%}%>
-
-
-
-
-  </div>
-  </div>
-</nav>
-
-
-  <div class="row">
-
-
-
-  <% if(errors.length) { %>
-    <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>¡Cuidado!</strong><br /><br />
-      <% for (var i in errors) { %>
-        <span> <%= errors[i].message %></span><br />
+    <main class="row">
+      <% if(errors.length) { %>
+        <% include /partials/errorsMessage %>
       <% } %>
-    </div>
-  <% } %>
 
-  <div><%- body %></div>
-</div>
+      <%- body %>
+    </main>
 
+    <footer class="navbar navbar-default  navbar-fixed-bottom">
+      <% include /partials/footer %>
+    </footer>
 
-
-
-  <footer class="navbar navbar-default  navbar-fixed-bottom">
-    <div class="container">
-      <ul class="nav navbar-nav">
-  <li><a href="http://es.wikipedia.org/wiki/Quiz">¿Que es un Quiz?</a></li>
-  <li><a href="https://github.com/dgomezc/quiz">Proyecto en GitHub</a></li>
-</ul>
-    </div>
-  </footer>
-</div>
-<!-- Librería jQuery requerida por los plugins de JavaScript -->
-   <script src="http://code.jquery.com/jquery.js"></script>
-
-   <!-- Todos los plugins JavaScript de Bootstrap (también puedes
-        incluir archivos JavaScript individuales de los únicos
-        plugins que utilices) -->
-   <script src="/bootstrap/js/bootstrap.min.js"></script>
-</body>
+  <% include /partials/scripts %>
+  </body>
 </html>

@@ -1,5 +1,8 @@
+<% var pageTitle= 'Pregunta: ' + quiz.pregunta; %>
+<% include ../partials/pageTitle %>
+
+
 <form action="/quizes/<%= quiz.id %>/answer" method="get">
-  Pregunta: <%= quiz.pregunta %>
   <input type="text" name="respuesta" value="Responda aquí">
   <input type="submit" value="Enviar">
 </form>

@@ -10,14 +10,16 @@
     </header>
 
     <main class="row">
-      <% if(errors.length) { %>
-        <% include /partials/errorsMessage %>
-      <% } %>
+      <div class="container">
+        <% if(errors.length) { %>
+          <% include /partials/errorsMessage %>
+        <% } %>
 
-      <%- body %>
+        <%- body %>
+      </div>
     </main>
 
-    <footer class="navbar navbar-default  navbar-fixed-bottom">
+    <footer>
       <% include /partials/footer %>
     </footer>
 

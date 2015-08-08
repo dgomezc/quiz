@@ -1,6 +1,58 @@
 <% var pageTitle= 'Créditos'; %>
 <% include /partials/pageTitle %>
+  <div class="col-md-3">
+    <p>
+      Esta aplicación se creó para el curso
+      "Desarrollo con servicios en la nube con HTML5, javascript y node.js"
+    </p>
+    <p>
+      Posteriormente se ha tematizado con Bootstrap y se ha añadido alguna cosilla más.
+    </p>
+    <br>
+    <p>Proyecto creado por <%= name %><br>
+      Código fuente: <a href="https://github.com/dgomezc/quiz" target="_blank">GitHub</a>
+    </p>
+    <br>
+  </div>
 
-<p>El autor del proyecto es <%= name %></p>
-<br>
-<p><img src="<%= imageUrl %>"></p>
+  <div class="col-md-9">
+    <div class="row">
+      <h3 id="logosTitle">Tecnologías utilizadas: </h3><br>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+          <a href="http://www.w3schools.com/html/html5_intro.asp" class="thumbnail" target="_blank">
+            <img class="img-responsive" src="/images/logos/html5.png" alt="">
+          </a>
+          </div>
+          <div class="col-md-4 col-sm-6">
+          <a href="https://nodejs.org/" class="thumbnail"  target="_blank">
+            <img class="img-responsive" src="/images/logos/nodejs.png" alt="">
+          </a>
+          </div>
+          <div class="col-md-4 col-sm-6">
+          <a href="http://expressjs.com/" class="thumbnail"  target="_blank">
+            <img class="img-responsive" src="/images/logos/express.png" alt="">
+          </a>
+          </div>
+
+      <div class="col-md-4 col-sm-6">
+          <a href="http://www.postgresql.org" class="thumbnail"  target="_blank">
+            <img class="img-responsive" src="/images/logos/postgresql.png" alt="">
+          </a>
+          </div>
+          <div class="col-md-4 col-sm-6">
+          <a href="http://getbootstrap.com/" class="thumbnail"  target="_blank">
+            <img class="img-responsive" src="/images/logos/bootstrap.png" alt="">
+          </a>
+          </div>
+          <div class="col-md-4 col-sm-6">
+          <a href="https://github.com/" class="thumbnail"  target="_blank">
+            <img class="img-responsive" src="/images/logos/github.png" alt="">
+          </a>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+<div class="clearfix">

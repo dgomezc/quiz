@@ -22,6 +22,18 @@
 
   <div class="col-md-6">
     <h3 class="top-margin-zero">Comentarios:</h3>
+
+
+<%
+  var hayComentariosPublicados = false;
+  for (index in quiz.Comments) {
+     if(quiz.Comments[index].publicado  || session.user){
+       hayComentariosPublicados = true;
+     }
+  }
+%>
+
+    <% if(hayComentariosPublicados) { %>
     <table class="table">
       <%for (index in quiz.Comments) { %>
           <% if(quiz.Comments[index].publicado || session.user) { %>
@@ -38,6 +50,9 @@
       <% } %>
       <% } %>
     </table>
+    <%} else { %>
+    <p>Esta pregunta todavía no tiene ningún comentario publicado.</p>
+    <%}%>
     <a href="/quizes/<%= quiz.id %>/comments/new" class="btn btn-primary pull-right">
       Nuevo comentario
     </a>

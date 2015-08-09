@@ -1,6 +1,10 @@
 <% var pageTitle= 'Editar pregunta' %>
 <% include ../partials/pageTitle %>
 
-<form method="post" action="/quizes/<%= quiz.id %>?_method=put">
-	<% include _form.ejs %>
-</form>
+<div class="row">
+  <div class="col-md-6 col-sm-9">
+	<form method="post" action="/quizes/<%= quiz.id %>?_method=put" role="form">
+		<% include _form.ejs %>
+	</form>
+ </div>
+</div>

@@ -1,6 +1,9 @@
 <% var pageTitle= 'Añadir pregunta' %>
 <% include ../partials/pageTitle %>
-
-<form method="post" action="/quizes/create">
+<div class="row">
+  <div class="col-md-6 col-sm-9">
+<form method="post" action="/quizes/create" role="form">
 	<% include _form.ejs %>
 </form>
+ </div>
+</div>

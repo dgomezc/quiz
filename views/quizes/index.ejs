@@ -1,30 +1,46 @@
 <% var pageTitle= 'Lista de Preguntas' %>
 <% include ../partials/pageTitle %>
+<div class="container">
+  <div class="row">
+    <form class="form-inline" role="form" action="quizes" method="get">
+    <div class="form-group">
+      <p class="form-control-static">Filtrar Preguntas</p>
+      <input type="text" class="form-control" name="search" class="form-control"
+             placeholder="Introduce texto">
+    </div>
+    <button type="submit" class="btn btn-default">Filtrar</button>
+  </form>
+  </div>
+</div>
 
-<form action="quizes" method="get">
-  Buscar pregunta:
-  <input type="text" name="search">
-  <input type="submit" value="Buscar">
-</form>
+  <br><br>
 
+<div class="row">
+<div class="col-md-6">
+  <table class="table ">
+    <% var i; for(i=0; i<quizes.length; i++) { %>
+    <tr>
+ 		<td><a href="quizes/<%= quizes[i].id%>"><%= quizes[i].pregunta %></a></td>
+     <%if(session.user){%>
+     <td class="col-md-1">
+       <a href="quizes/<%= quizes[i].id%>/edit" class="btn btn-primary btn-sm pull-right">editar</a>
+     </td>
+     <td class="col-md-1">
+       <form method="post" action="quizes/<%= quizes[i].id%>?_method=delete">
+         <button type="submit"  class="btn btn-danger btn-sm pull-right"
+          onclick="return confirm ('Borrar: <%= quizes[i].pregunta %>')">
+           borrar
+         </button>
+       </form>
+     </td>
+     <%}%>
+    </tr>
+    <% } %>
+  </table>
 
-<table>
-   <% var i; for(i=0; i<quizes.length; i++) { %>
-   <tr>
-		<td><a href="quizes/<%= quizes[i].id%>"><%= quizes[i].pregunta %></a></td>
+  <p>
     <%if(session.user){%>
-    <td><a href="quizes/<%= quizes[i].id%>/edit"><button>editar</button></a></td>
-    <td>
-      <form method="post" action="quizes/<%= quizes[i].id%>?_method=delete">
-        <button type="submit" onclick="return confirm ('Borrar: <%= quizes[i].pregunta %>')">
-          borrar
-        </button>
-      </form>
-    </td>
+        <p><a href="/quizes/new"><button type="button" class="btn btn-primary pull-right">Crear pregunta</button></a></p>
     <%}%>
-   </tr>
-   <% } %>
-</table><p>
-  <%if(session.user){%>
-<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
-  <%}%>
+</div>
+</div>

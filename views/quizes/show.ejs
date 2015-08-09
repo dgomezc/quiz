@@ -1,66 +1,45 @@
 <% var pageTitle= 'Pregunta: ' + quiz.pregunta; %>
 <% include ../partials/pageTitle %>
 
-<div class="col-sm-6">
-  <div class="row">
-    <div class="content">
-
-
-<form class="form-horizontal" action="/quizes/<%= quiz.id %>/answer" method="get" role="form">
-  <div class="form-group">
-      <label for="for_respuesta" class="col-sm-2 control-label">Respuesta: </label>
-    <div class="col-sm-8 ">
-      <input type="text" name="respuesta" class="form-control" id="for_respuesta" placeholder="Responda aquí">
-    </div>
-    <div class="col-sm-2 ">
-      <button type="submit" class="btn btn-default pull-right">Enviar</button>
-    </div>
-  </div>
-  <div class="form-group">
-  </div>
-</form>
-</div>
-</div>
-
 <div class="row">
-  <div class="content">
-  <a href="/quizes/<%= quiz.id %>/comments/new" class="btn btn-primary pull-right">
-    Nuevo comentario
-  </a>
-</div>
-</div>
+  <div class="col-md-6">
+    <form class="form-horizontal" action="/quizes/<%= quiz.id %>/answer" method="get" role="form">
+      <div class="form-group">
+        <p class="col-sm-2 form-control-static">Respuesta: </p>
+          <div class="col-sm-10">
+          <div class="input-group">
+              <input type="text" name="respuesta" class="form-control" placeholder="Responda aquí">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Respuesta</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 
 
-  <div class="row">
-    <div class="content">
-    <h3>Comentarios:</h3>
 
-
-
-
-
+  <div class="col-md-6">
+    <h3 class="top-margin-zero">Comentarios:</h3>
     <table class="table">
       <%for (index in quiz.Comments) { %>
           <% if(quiz.Comments[index].publicado || session.user) { %>
       <tr>
       <td><%=quiz.Comments[index].texto%></td>
-
+      <td class="col-md-1">
       <% if(session.user && !quiz.Comments[index].publicado) {%>
-        <td class="col-md-1">
           <a href="/quizes/<%=quiz.id %>/comments/<%=quiz.Comments[index].id %>/publish" class="btn btn-primary btn-sm pull-right">
             Publicar
           </a>
-        </td>
       <%}%>
+      </td>
       </tr>
       <% } %>
       <% } %>
     </table>
-
-
-
-
+    <a href="/quizes/<%= quiz.id %>/comments/new" class="btn btn-primary pull-right">
+      Nuevo comentario
+    </a>
 </div>
-</div>
-
 </div>

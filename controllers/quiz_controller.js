@@ -36,11 +36,9 @@ exports.show = function(req, res) {
 
 // GET /quizes/:id/answer
 exports.answer = function(req, res) {
-  var resultado = 'Incorrecto';
-  if (req.query.respuesta === req.quiz.respuesta) {
-      resultado = 'Correcto';
-  }
-  res.render('quizes/answer', { quiz: req.quiz, respuesta: resultado, errors: []});
+  var resultado = req.query.respuesta.toLowerCase() === req.quiz.respuesta.toLowerCase();
+  res.render('quizes/answer', { quiz: req.quiz, respuesta: req.query.respuesta,
+              esCorrecta: resultado, errors: []});
 };
 
 //GET /quizes/new

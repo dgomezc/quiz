@@ -1,6 +1,26 @@
-<% var pageTitle= 'Respuesta' %>
+<% if(esCorrecta) {%>
+  <% var pageTitle= 'Respuesta Correcta' %>
+<%} else {%>
+  <% var pageTitle= 'Respuesta Incorrecta' %>
+<%}%>
 <% include ../partials/pageTitle %>
 
-  <%= respuesta %>
-<a href="/quizes/<%= quiz.id %>">Volver</a>
+<h3>
+<% if(esCorrecta) {%>
+        <span class="glyphicon glyphicon-ok text-success"></span>
+        Buen trabajo
+<%} else {%>
+    <span class="glyphicon glyphicon-remove text-danger"></span>
+    Vuelva a intentarlo.
+  <%}%>
+</h3>
+<br>
+<div class="row">
+  <div class="col-md-6">
+      <p><strong>Pregunta:</strong> <%=quiz.pregunta %> </p>
+      <p><strong>Respuesta introducida:</strong> <%=respuesta %> </p>
+    </div>
+  </div>
+<br>
+<a class="btn btn-primary" href="/quizes/<%= quiz.id %>">Volver</a>
 </p>

@@ -1,46 +1,51 @@
-<% var pageTitle= 'Lista de Preguntas' %>
+<% var pageTitle= 'Preguntas' %>
 <% include ../partials/pageTitle %>
-<div class="container">
-  <div class="row">
-    <form class="form-inline" role="form" action="quizes" method="get">
-    <div class="form-group">
-      <p class="form-control-static">Filtrar Preguntas</p>
-      <input type="text" class="form-control" name="search" class="form-control"
-             placeholder="Introduce texto">
-    </div>
-    <button type="submit" class="btn btn-default">Filtrar</button>
-  </form>
-  </div>
-</div>
-
-  <br><br>
 
 <div class="row">
-<div class="col-md-6">
-  <table class="table ">
-    <% var i; for(i=0; i<quizes.length; i++) { %>
-    <tr>
- 		<td><a href="quizes/<%= quizes[i].id%>"><%= quizes[i].pregunta %></a></td>
-     <%if(session.user){%>
-     <td class="col-md-1">
-       <a href="quizes/<%= quizes[i].id%>/edit" class="btn btn-primary btn-sm pull-right">editar</a>
-     </td>
-     <td class="col-md-1">
-       <form method="post" action="quizes/<%= quizes[i].id%>?_method=delete">
-         <button type="submit"  class="btn btn-danger btn-sm pull-right"
-          onclick="return confirm ('Borrar: <%= quizes[i].pregunta %>')">
-           borrar
-         </button>
-       </form>
-     </td>
-     <%}%>
-    </tr>
-    <% } %>
-  </table>
+  <div class="col-md-6">
+    <form class="form-horizontal" action="quizes" method="get" role="form">
+      <div class="form-group">
+        <p class="col-sm-3 form-control-static">Filtrar preguntas </p>
+          <div class="col-sm-9">
+          <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Introduce texto">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Filtrar</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 
-  <p>
+
+
+
+  <div class="col-md-6">
+    <h3 class="top-margin-zero">Lista de preguntas</h3>
+    <table class="table">
+      <% var i; for(i=0; i<quizes.length; i++) { %>
+      <tr>
+   		<td><a href="quizes/<%= quizes[i].id%>"><%= quizes[i].pregunta %></a></td>
+       <%if(session.user){%>
+       <td class="col-xs-1">
+         <a href="quizes/<%= quizes[i].id%>/edit" class="btn btn-primary btn-sm pull-right">editar</a>
+       </td>
+       <td class="col-xs-1">
+         <form method="post" action="quizes/<%= quizes[i].id%>?_method=delete">
+           <button type="submit"  class="btn btn-danger btn-sm pull-right"
+            onclick="return confirm ('Borrar: <%= quizes[i].pregunta %>')">
+             borrar
+           </button>
+         </form>
+       </td>
+       <%}%>
+      </tr>
+      <% } %>
+    </table>
+
     <%if(session.user){%>
-        <p><a href="/quizes/new"><button type="button" class="btn btn-primary pull-right">Crear pregunta</button></a></p>
+        <a href="/quizes/new" class="btn btn-primary pull-right">Crear pregunta</a>
     <%}%>
 </div>
 </div>
